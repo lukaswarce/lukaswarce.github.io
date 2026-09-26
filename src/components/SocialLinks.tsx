@@ -1,8 +1,11 @@
 import type { Social } from '@/content/socials';
+import type { Locale } from '@/i18n/config';
+import { getDictionary } from '@/i18n/ui';
 import { eventAttrs } from '@/lib/analytics';
 
 /** Enlaces de texto a perfiles; `rel="me"` refuerza la identidad ante buscadores. */
-export function SocialLinks({ items, className = '' }: { items: Social[]; className?: string }) {
+export function SocialLinks({ items, locale, className = '' }: { items: Social[]; locale: Locale; className?: string }) {
+  const t = getDictionary(locale);
   return (
     <ul className={`flex flex-wrap gap-x-5 gap-y-2 ${className}`}>
       {items.map((s) => (
@@ -15,7 +18,7 @@ export function SocialLinks({ items, className = '' }: { items: Social[]; classN
             {...eventAttrs(s.group === 'research' || s.key === 'scholar' ? 'research_click' : 'social_click', { profile: s.key })}
           >
             {s.label}
-            <span className="sr-only"> (opens in a new tab)</span>
+            <span className="sr-only">{t.common.newTab}</span>
           </a>
         </li>
       ))}

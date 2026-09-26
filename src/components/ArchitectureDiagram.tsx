@@ -1,7 +1,9 @@
 import { chaucherosArchitecture } from '@/content/ventures';
+import type { Locale } from '@/i18n/config';
+import { getDictionary } from '@/i18n/ui';
 
 /** Diagrama conceptual de Chaucheros: del canal al resultado. */
-export function ArchitectureDiagram() {
+export function ArchitectureDiagram({ locale }: { locale: Locale }) {
   return (
     <figure aria-labelledby="arch-caption" className="rounded-sm border border-line bg-bg p-5 sm:p-7">
       <ol className="flex flex-col items-stretch">
@@ -34,7 +36,7 @@ export function ArchitectureDiagram() {
         ))}
       </ol>
       <figcaption id="arch-caption" className="mt-5 text-xs text-muted">
-        Conceptual architecture. From a need to a workforce.
+        {getDictionary(locale).architecture}
       </figcaption>
     </figure>
   );
