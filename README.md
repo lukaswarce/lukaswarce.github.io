@@ -75,7 +75,7 @@ I'm always open to:
 - 📈 **Partnering** on B2B fintech and enterprise AI solutions
 - 🎓 **Mentoring** aspiring AI engineers and developers
 
-**📫 Reach out:** [lukaswarce@gmail.com](mailto:lukaswarce@gmail.com) | **📞 Call:** 786.671.4280
+**📫 Reach out:** [lukaswarce@gmail.com](mailto:lukaswarce@gmail.com)
 
 <div align="center">
 
