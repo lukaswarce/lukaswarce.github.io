@@ -1,4 +1,4 @@
-name: Sitio Astro
+name: Sitio Next.js
 
 on:
   push:
@@ -27,10 +27,10 @@ jobs:
       - run: npm ci
       - run: npm run build
       # Conserva el dominio propio si el repositorio tiene CNAME.
-      - run: if [ -f CNAME ]; then cp CNAME dist/CNAME; fi
+      - run: if [ -f CNAME ]; then cp CNAME out/CNAME; fi
       - uses: actions/upload-pages-artifact@v4
         with:
-          path: dist
+          path: out
 
   deploy:
     if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master'
