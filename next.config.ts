@@ -6,6 +6,8 @@ const nextConfig: NextConfig = {
   output: 'export',
   trailingSlash: true,
   images: { unoptimized: true },
+  // Con dos layouts raíz (inglés y /es) la página 404 global se define en app/global-not-found.tsx.
+  experimental: { globalNotFound: true },
   poweredByHeader: false,
 };
 

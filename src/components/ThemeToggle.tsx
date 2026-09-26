@@ -7,7 +7,7 @@ type Theme = 'light' | 'dark';
 /** Script en <head> que aplica el tema guardado antes de pintar, para evitar parpadeo. */
 export const themeScript = `(()=>{try{const t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}})()`;
 
-export function ThemeToggle() {
+export function ThemeToggle({ labels }: { labels: { light: string; dark: string } }) {
   const [theme, setTheme] = useState<Theme | null>(null);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export function ThemeToggle() {
     setTheme(next);
   };
 
-  const label = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+  const label = theme === 'dark' ? labels.light : labels.dark;
 
   return (
     <button
