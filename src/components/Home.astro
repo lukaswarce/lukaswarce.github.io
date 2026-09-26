@@ -54,17 +54,19 @@ const { contact } = profile;
 
 <section id="experience" class="container">
   <h2>{t('nav.experience')}</h2>
-  <div class="grid three">
+  <ol class="timeline">
     {profile.experience.map((e) => (
-      <article class="card">
-        <h3>{e.role[lang]}</h3>
-        <p>{e.summary[lang]}</p>
+      <li class="card">
+        <header class="job">
+          <h3>{e.role[lang]} · <span class="company">{e.company}</span></h3>
+          <p class="period">{e.period[lang]}</p>
+        </header>
         <ul class="list">
           {e.highlights[lang].map((h) => <li>{h}</li>)}
         </ul>
-      </article>
+      </li>
     ))}
-  </div>
+  </ol>
 </section>
 
 <section id="projects" class="container">
