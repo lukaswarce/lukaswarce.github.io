@@ -1,62 +1,194 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 <url>
 <loc>https://lukaswarce.com/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://lukaswarce.com/" />
+<xhtml:link rel="alternate" hreflang="es" href="https://lukaswarce.com/es/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://lukaswarce.com/" />
+<changefreq>monthly</changefreq>
+<priority>1</priority>
+</url>
+<url>
+<loc>https://lukaswarce.com/es/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://lukaswarce.com/" />
+<xhtml:link rel="alternate" hreflang="es" href="https://lukaswarce.com/es/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://lukaswarce.com/" />
 <changefreq>monthly</changefreq>
 <priority>1</priority>
 </url>
 <url>
 <loc>https://lukaswarce.com/about/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://lukaswarce.com/about/" />
+<xhtml:link rel="alternate" hreflang="es" href="https://lukaswarce.com/es/about/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://lukaswarce.com/about/" />
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://lukaswarce.com/es/about/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://lukaswarce.com/about/" />
+<xhtml:link rel="alternate" hreflang="es" href="https://lukaswarce.com/es/about/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://lukaswarce.com/about/" />
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
 <url>
 <loc>https://lukaswarce.com/startups/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://lukaswarce.com/startups/" />
+<xhtml:link rel="alternate" hreflang="es" href="https://lukaswarce.com/es/startups/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://lukaswarce.com/startups/" />
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://lukaswarce.com/es/startups/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://lukaswarce.com/startups/" />
+<xhtml:link rel="alternate" hreflang="es" href="https://lukaswarce.com/es/startups/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://lukaswarce.com/startups/" />
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
 <url>
 <loc>https://lukaswarce.com/research/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://lukaswarce.com/research/" />
+<xhtml:link rel="alternate" hreflang="es" href="https://lukaswarce.com/es/research/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://lukaswarce.com/research/" />
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://lukaswarce.com/es/research/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://lukaswarce.com/research/" />
+<xhtml:link rel="alternate" hreflang="es" href="https://lukaswarce.com/es/research/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://lukaswarce.com/research/" />
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
 <url>
 <loc>https://lukaswarce.com/writing/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://lukaswarce.com/writing/" />
+<xhtml:link rel="alternate" hreflang="es" href="https://lukaswarce.com/es/writing/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://lukaswarce.com/writing/" />
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://lukaswarce.com/es/writing/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://lukaswarce.com/writing/" />
+<xhtml:link rel="alternate" hreflang="es" href="https://lukaswarce.com/es/writing/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://lukaswarce.com/writing/" />
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
 <url>
 <loc>https://lukaswarce.com/now/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://lukaswarce.com/now/" />
+<xhtml:link rel="alternate" hreflang="es" href="https://lukaswarce.com/es/now/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://lukaswarce.com/now/" />
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://lukaswarce.com/es/now/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://lukaswarce.com/now/" />
+<xhtml:link rel="alternate" hreflang="es" href="https://lukaswarce.com/es/now/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://lukaswarce.com/now/" />
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
 <url>
 <loc>https://lukaswarce.com/contact/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://lukaswarce.com/contact/" />
+<xhtml:link rel="alternate" hreflang="es" href="https://lukaswarce.com/es/contact/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://lukaswarce.com/contact/" />
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://lukaswarce.com/es/contact/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://lukaswarce.com/contact/" />
+<xhtml:link rel="alternate" hreflang="es" href="https://lukaswarce.com/es/contact/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://lukaswarce.com/contact/" />
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
 <url>
 <loc>https://lukaswarce.com/startups/chaucheros/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://lukaswarce.com/startups/chaucheros/" />
+<xhtml:link rel="alternate" hreflang="es" href="https://lukaswarce.com/es/startups/chaucheros/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://lukaswarce.com/startups/chaucheros/" />
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://lukaswarce.com/es/startups/chaucheros/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://lukaswarce.com/startups/chaucheros/" />
+<xhtml:link rel="alternate" hreflang="es" href="https://lukaswarce.com/es/startups/chaucheros/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://lukaswarce.com/startups/chaucheros/" />
 <changefreq>monthly</changefreq>
 <priority>0.6</priority>
 </url>
 <url>
 <loc>https://lukaswarce.com/startups/kardot/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://lukaswarce.com/startups/kardot/" />
+<xhtml:link rel="alternate" hreflang="es" href="https://lukaswarce.com/es/startups/kardot/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://lukaswarce.com/startups/kardot/" />
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://lukaswarce.com/es/startups/kardot/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://lukaswarce.com/startups/kardot/" />
+<xhtml:link rel="alternate" hreflang="es" href="https://lukaswarce.com/es/startups/kardot/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://lukaswarce.com/startups/kardot/" />
 <changefreq>monthly</changefreq>
 <priority>0.6</priority>
 </url>
 <url>
 <loc>https://lukaswarce.com/startups/estrategia-ia/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://lukaswarce.com/startups/estrategia-ia/" />
+<xhtml:link rel="alternate" hreflang="es" href="https://lukaswarce.com/es/startups/estrategia-ia/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://lukaswarce.com/startups/estrategia-ia/" />
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://lukaswarce.com/es/startups/estrategia-ia/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://lukaswarce.com/startups/estrategia-ia/" />
+<xhtml:link rel="alternate" hreflang="es" href="https://lukaswarce.com/es/startups/estrategia-ia/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://lukaswarce.com/startups/estrategia-ia/" />
 <changefreq>monthly</changefreq>
 <priority>0.6</priority>
 </url>
 <url>
 <loc>https://lukaswarce.com/startups/goplay/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://lukaswarce.com/startups/goplay/" />
+<xhtml:link rel="alternate" hreflang="es" href="https://lukaswarce.com/es/startups/goplay/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://lukaswarce.com/startups/goplay/" />
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://lukaswarce.com/es/startups/goplay/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://lukaswarce.com/startups/goplay/" />
+<xhtml:link rel="alternate" hreflang="es" href="https://lukaswarce.com/es/startups/goplay/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://lukaswarce.com/startups/goplay/" />
 <changefreq>monthly</changefreq>
 <priority>0.6</priority>
 </url>
 <url>
 <loc>https://lukaswarce.com/startups/plotvision/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://lukaswarce.com/startups/plotvision/" />
+<xhtml:link rel="alternate" hreflang="es" href="https://lukaswarce.com/es/startups/plotvision/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://lukaswarce.com/startups/plotvision/" />
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://lukaswarce.com/es/startups/plotvision/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://lukaswarce.com/startups/plotvision/" />
+<xhtml:link rel="alternate" hreflang="es" href="https://lukaswarce.com/es/startups/plotvision/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://lukaswarce.com/startups/plotvision/" />
 <changefreq>monthly</changefreq>
 <priority>0.6</priority>
 </url>
