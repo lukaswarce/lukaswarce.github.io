@@ -1,10 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
+import { langs } from '../data/profile';
+import { homePath, ui } from '../i18n/ui';
 ---
-<Base lang="es" title="404">
-  <section class="container">
-    <h1>404</h1>
-    <p>Esta página no existe. / This page does not exist.</p>
-    <p><a href="/">Inicio</a> · <a href="/en/">Home</a></p>
+<Base lang="es" title="404 | Christian Spana" noindex>
+  <section class="section">
+    <div class="container">
+      <h1>404</h1>
+      {langs.map((l) => (
+        <p lang={l}>{ui[l]['404.text']} <a href={homePath(l)}>{ui[l]['404.back']}</a></p>
+      ))}
+    </div>
   </section>
 </Base>

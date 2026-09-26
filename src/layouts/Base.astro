@@ -1,18 +1,56 @@
 ---
 import '../styles/global.css';
-import { profile, type Lang } from '../data/profile';
-import { homePath, useTranslations } from '../i18n/ui';
+import { defaultLang, langs, profile, type Lang } from '../data/profile';
+import { homePath, languages, useTranslations } from '../i18n/ui';
 
 interface Props {
   lang: Lang;
-  title: string;
+  title?: string;
+  description?: string;
+  /** Para páginas que no deben indexarse (404). */
+  noindex?: boolean;
 }
 
-const { lang, title } = Astro.props;
+const { lang, noindex = false } = Astro.props;
 const t = useTranslations(lang);
-const other: Lang = lang === 'es' ? 'en' : 'es';
-const sections = ['home', 'about', 'experience', 'projects', 'contact'] as const;
-const canonical = new URL(homePath[lang], Astro.site);
+const title = Astro.props.title ?? t('meta.title');
+const description = Astro.props.description ?? t('meta.description');
+const site = Astro.site!;
+const canonical = new URL(homePath(lang), site).href;
+const image = new URL(profile.photo, site).href;
+const sections = ['home', 'about', 'projects', 'experience', 'contact'] as const;
+
+// Datos estructurados para buscadores: persona y su sitio.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${site.href}#person`,
+      name: profile.name,
+      url: site.href,
+      image,
+      email: `mailto:${profile.email}`,
+      jobTitle: profile.jobTitle[lang],
+      description,
+      worksFor: { '@type': 'Organization', name: 'Kardot' },
+      alumniOf: profile.education
+        .filter((e) => !e.school.startsWith('Amazon'))
+        .map((e) => ({ '@type': 'CollegeOrUniversity', name: e.school.split(',')[0] })),
+      knowsAbout: ['Artificial Intelligence', 'Multi-Agent Systems', 'B2B Fintech', 'Entrepreneurship', 'Business Development'],
+      knowsLanguage: ['es', 'en'],
+      sameAs: profile.links.map((l) => l.url),
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${site.href}#website`,
+      url: site.href,
+      name: profile.name,
+      inLanguage: langs.slice(),
+      publisher: { '@id': `${site.href}#person` },
+    },
+  ],
+};
 ---
 <!doctype html>
 <html lang={lang}>
@@ -20,35 +58,69 @@ const canonical = new URL(homePath[lang], Astro.site);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
-    <meta name="description" content={t('meta.description')} />
+    <meta name="description" content={description} />
     <meta name="author" content={profile.name} />
-    <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="es" href={new URL(homePath.es, Astro.site)} />
-    <link rel="alternate" hreflang="en" href={new URL(homePath.en, Astro.site)} />
-    <link rel="alternate" hreflang="x-default" href={new URL(homePath.es, Astro.site)} />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
+    <meta name="theme-color" content="#f3f0e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#101114" media="(prefers-color-scheme: dark)" />
+    {!noindex && <link rel="canonical" href={canonical} />}
+    {!noindex && langs.map((l) => <link rel="alternate" hreflang={l} href={new URL(homePath(l), site).href} />)}
+    {!noindex && <link rel="alternate" hreflang="x-default" href={new URL(homePath(defaultLang), site).href} />}
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="/icons/favicon-128x128.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content={profile.name} />
     <meta property="og:title" content={title} />
-    <meta property="og:description" content={t('meta.description')} />
-    <meta property="og:type" content="website" />
+    <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_US'} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:alt" content={profile.name} />
+    <meta property="og:locale" content={languages[lang].locale} />
+    {langs.filter((l) => l !== lang).map((l) => <meta property="og:locale:alternate" content={languages[l].locale} />)}
+    <meta property="profile:first_name" content="Christian" />
+    <meta property="profile:last_name" content="Spana" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    {!noindex && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>
   <body>
     <header class="site-header">
-      <nav class="container nav" aria-label={lang === 'es' ? 'Principal' : 'Main'}>
-        <a class="brand" href={homePath[lang]}>{profile.name}</a>
-        <ul>
-          {sections.map((s) => <li><a href={`#${s}`}>{t(`nav.${s}`)}</a></li>)}
+      <nav class="container nav" aria-label={t('nav.label')}>
+        <a class="brand" href={homePath(lang)}>{profile.name}</a>
+        <ul class="nav-links">
+          {sections.slice(1).map((s) => <li><a href={`${homePath(lang)}#${s}`}>{t(`nav.${s}`)}</a></li>)}
         </ul>
-        <a class="lang" href={homePath[other]} hreflang={other} lang={other}>{t('lang.switch')}</a>
+        <ul class="langs" aria-label={t('lang.label')}>
+          {langs.map((l) => (
+            <li>
+              <a
+                href={homePath(l)}
+                hreflang={l}
+                lang={l}
+                title={languages[l].label}
+                aria-current={l === lang ? 'page' : undefined}
+              >{languages[l].short}</a>
+            </li>
+          ))}
+        </ul>
       </nav>
     </header>
-    <main>
+    <main id="main">
       <slot />
     </main>
-    <footer class="site-footer container">
-      <p>&copy; {new Date().getFullYear()} {profile.name}. {t('footer.rights')}</p>
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>&copy; {new Date().getFullYear()} {profile.name}. {t('footer.rights')}</p>
+        <ul>
+          {profile.links.map((l) => <li><a href={l.url} rel="me noopener">{l.label}</a></li>)}
+        </ul>
+      </div>
     </footer>
   </body>
 </html>

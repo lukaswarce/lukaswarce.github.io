@@ -1,18 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Home from '../components/Home.astro';
-import { listPending, profile } from '../data/profile';
-
-// Aviso al compilar mientras queden datos por confirmar en src/data/profile.ts.
-const pendingItems = listPending();
-if (pendingItems.length) {
-  console.warn(
-    `\n[profile] ${pendingItems.length} datos por confirmar en src/data/profile.ts:\n` +
-      pendingItems.map((p) => `  - ${p.path}: ${p.value.options.join(' | ')}`).join('\n') +
-      '\n',
-  );
-}
 ---
-<Base lang="es" title={`${profile.name} | Inicio`}>
+<Base lang="es">
   <Home lang="es" />
 </Base>

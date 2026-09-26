@@ -1,286 +1,271 @@
 /**
- * Única fuente de verdad del perfil: biografía, titular, experiencia,
- * proyectos y contacto, en español e inglés.
- *
- * Los valores envueltos en `pending(...)` son datos contradictorios entre las
- * versiones anteriores del sitio y el README. Se muestran como
- * "[por confirmar]" en la página y se listan en la consola al compilar
- * hasta que se reemplacen por el valor definitivo.
+ * Única fuente de verdad del perfil en los cuatro idiomas del sitio.
+ * Contenido basado en el currículum de Christian (sep 2026).
+ * Por decisión de Christian, el teléfono no se publica.
  */
 
-export type Lang = 'es' | 'en';
+export const langs = ['es', 'en', 'fr', 'pt'] as const;
+export type Lang = (typeof langs)[number];
+export const defaultLang: Lang = 'es';
 export type Localized<T = string> = Record<Lang, T>;
-
-export interface Pending {
-  pending: true;
-  /** Valores encontrados en las fuentes, con su origen. */
-  options: string[];
-  note: string;
-}
-
-export type Value<T = string> = T | Pending;
-
-export const pending = (note: string, ...options: string[]): Pending => ({
-  pending: true,
-  options,
-  note,
-});
-
-export const isPending = (v: unknown): v is Pending =>
-  typeof v === 'object' && v !== null && (v as Pending).pending === true;
 
 export const profile = {
   name: 'Christian Spana',
+  email: 'lukaswarce@gmail.com',
+  photo: '/images/christian-spana.jpeg',
+
+  jobTitle: {
+    es: 'Emprendedor tecnológico e ingeniero de IA',
+    en: 'Tech Entrepreneur & AI Engineer',
+    fr: 'Entrepreneur tech et ingénieur en IA',
+    pt: 'Empreendedor de tecnologia e engenheiro de IA',
+  } satisfies Localized,
+
+  eyebrow: {
+    es: 'Emprendedor tecnológico · IA · Fintech B2B',
+    en: 'Tech entrepreneur · AI · B2B fintech',
+    fr: 'Entrepreneur tech · IA · Fintech B2B',
+    pt: 'Empreendedor de tecnologia · IA · Fintech B2B',
+  } satisfies Localized,
 
   headline: {
-    es: 'Ingeniero de IA y desarrollador full stack',
-    en: 'AI Engineer & Full Stack Developer',
-  } satisfies Localized<Value>,
-
-  roles: {
-    es: ['Emprendedor', 'Arquitecto de IA', 'Ingeniero Full Stack', 'Profesor'],
-    en: ['Entrepreneur', 'AI Architect', 'Full Stack Engineer', 'Professor'],
-  } satisfies Localized<string[]>,
-
-  yearsExperience: '15+' as Value,
-
-  location: {
-    es: 'North Vancouver, BC, Canadá',
-    en: 'North Vancouver, BC, Canada',
+    es: 'Construyo productos inteligentes para mercados reales.',
+    en: 'I build intelligent products for real markets.',
+    fr: 'Je crée des produits intelligents pour des marchés réels.',
+    pt: 'Construo produtos inteligentes para mercados reais.',
   } satisfies Localized,
 
-  summary: {
-    es: 'Ingeniero sénior de IA y desarrollador full stack. Hago de puente entre la investigación avanzada en IA y el software que funciona en producción: desde entrenar y ajustar LLMs y modelos de visión por computadora hasta construir APIs confiables y frontends fluidos.',
-    en: 'Senior AI Engineer and Full Stack Developer. I act as a bridge between advanced AI research and real-world software, from training and fine-tuning LLMs and computer vision models to building reliable APIs and smooth frontends.',
+  lede: {
+    es: 'Con más de 15 años en tecnología, convierto la inteligencia artificial en productos, alianzas B2B y crecimiento para empresas entre Latinoamérica y Canadá.',
+    en: 'With 15+ years in technology, I turn artificial intelligence into products, B2B partnerships and growth for companies across Latin America and Canada.',
+    fr: "Fort de plus de 15 ans dans la technologie, je transforme l'intelligence artificielle en produits, en partenariats B2B et en croissance pour des entreprises entre l'Amérique latine et le Canada.",
+    pt: 'Com mais de 15 anos em tecnologia, transformo inteligência artificial em produtos, parcerias B2B e crescimento para empresas entre a América Latina e o Canadá.',
   } satisfies Localized,
+
+  stats: [
+    { value: '15+', label: { es: 'años creando tecnología', en: 'years building technology', fr: 'ans à créer de la technologie', pt: 'anos criando tecnologia' } },
+    { value: '10+', label: { es: 'alianzas B2B cerradas', en: 'B2B partnerships secured', fr: 'partenariats B2B conclus', pt: 'parcerias B2B fechadas' } },
+    { value: '25 %', label: { es: 'crecimiento mensual en B2B', en: 'month-over-month B2B growth', fr: 'de croissance B2B mensuelle', pt: 'de crescimento B2B mensal' } },
+    { value: '40 %', label: { es: 'menos tiempo de MVP a mercado', en: 'faster MVP to market', fr: 'de délai en moins du MVP au marché', pt: 'menos tempo do MVP ao mercado' } },
+  ],
 
   about: {
     es: [
-      'Integro la investigación avanzada en IA en software de producción confiable y escalable. Hoy lidero la arquitectura de Kardot, un ecosistema fintech B2B basado en sistemas multiagente (MAS) y el Model Context Protocol (MCP).',
-      'Antes construí productos de IA para planificación de negocios, marketplaces, salud y agricultura, desde modelos de visión por computadora hasta apps web y móviles.',
-      'También he sido docente de IA y Cloud Computing: un 80 % de proyectos exitosos y 25 estudiantes guiados hasta certificaciones profesionales de AWS.',
+      'Empecé escribiendo código y hoy me dedico a crear negocios. Uno ambas cosas: entiendo la tecnología a fondo y la pongo al servicio de clientes, socios e inversionistas.',
+      'Actualmente soy Lead Architect de Kardot, un ecosistema fintech B2B basado en sistemas multiagente. Antes lideré Estrategia.IA y construí productos de IA para marketplaces, salud y agricultura.',
     ],
     en: [
-      'I integrate advanced AI research into reliable, scalable production software. Today I lead architecture at Kardot, a B2B fintech ecosystem built on Multi-Agent Systems (MAS) and the Model Context Protocol (MCP).',
-      'Before that I built AI products for business planning, marketplaces, healthcare and agriculture, from computer vision models to web and mobile apps.',
-      'I have also taught AI and Cloud Computing, with an 80% project success rate and 25 students guided to professional AWS certifications.',
+      'I started out writing code; today I build businesses. I bring both together: I understand technology in depth and put it to work for clients, partners and investors.',
+      'I am currently Lead Architect at Kardot, a B2B fintech ecosystem built on multi-agent systems. Before that I led Estrategia.IA and built AI products for marketplaces, healthcare and agriculture.',
+    ],
+    fr: [
+      "J'ai commencé en écrivant du code ; aujourd'hui, je crée des entreprises. J'associe les deux : je comprends la technologie en profondeur et je la mets au service des clients, des partenaires et des investisseurs.",
+      "Je suis actuellement Lead Architect chez Kardot, un écosystème fintech B2B fondé sur des systèmes multi-agents. Auparavant, j'ai dirigé Estrategia.IA et créé des produits d'IA pour des places de marché, la santé et l'agriculture.",
+    ],
+    pt: [
+      'Comecei escrevendo código e hoje me dedico a criar negócios. Uno as duas coisas: entendo a tecnologia a fundo e a coloco a serviço de clientes, parceiros e investidores.',
+      'Atualmente sou Lead Architect da Kardot, um ecossistema fintech B2B baseado em sistemas multiagente. Antes liderei a Estrategia.IA e construí produtos de IA para marketplaces, saúde e agricultura.',
     ],
   } satisfies Localized<string[]>,
 
-  credentials: {
-    es: [
-      'Máster en Ciencias de la Computación (Inteligencia Artificial), Universidad Espíritu Santo (UEES), Ecuador',
-      'Diplomado en Ciencias de la Computación (Ciberseguridad), Tecnológico de Monterrey, México',
-      'Licenciatura en Ciencias de la Computación, Universidad de las Fuerzas Armadas, Ecuador',
-      'AWS Certified Solutions Architect – Associate (2022)',
-    ],
-    en: [
-      'Master in Computer Science (Artificial Intelligence), Universidad Espíritu Santo (UEES), Ecuador',
-      'Diploma in Computer Science (Cybersecurity), Monterrey Institute of Technology, Mexico',
-      'Bachelor of Computer Science, University of the Armed Forces, Ecuador',
-      'AWS Certified Solutions Architect – Associate (2022)',
-    ],
-  } satisfies Localized<Value[]>,
+  pillars: [
+    {
+      title: { es: 'Alianzas B2B', en: 'B2B partnerships', fr: 'Partenariats B2B', pt: 'Parcerias B2B' },
+      text: {
+        es: 'Diseño modelos de colaboración que abren mercados y reducen costos para ambas partes.',
+        en: 'I design partnership models that open markets and cut costs for both sides.',
+        fr: 'Je conçois des modèles de partenariat qui ouvrent des marchés et réduisent les coûts des deux côtés.',
+        pt: 'Desenho modelos de parceria que abrem mercados e reduzem custos para ambos os lados.',
+      },
+    },
+    {
+      title: { es: 'Productos de IA', en: 'AI products', fr: "Produits d'IA", pt: 'Produtos de IA' },
+      text: {
+        es: 'Llevo ideas a productos en producción: agentes, LLMs y visión por computadora con impacto medible.',
+        en: 'I take ideas to production: agents, LLMs and computer vision with measurable impact.',
+        fr: "J'amène les idées jusqu'en production : agents, LLM et vision par ordinateur à l'impact mesurable.",
+        pt: 'Levo ideias até a produção: agentes, LLMs e visão computacional com impacto mensurável.',
+      },
+    },
+    {
+      title: { es: 'Liderazgo y estrategia', en: 'Leadership & strategy', fr: 'Leadership et stratégie', pt: 'Liderança e estratégia' },
+      text: {
+        es: 'Armo y dirijo equipos, defino la hoja de ruta y conecto la tecnología con los objetivos del negocio.',
+        en: 'I build and lead teams, set the roadmap and tie technology to business goals.',
+        fr: "Je constitue et dirige des équipes, je fixe la feuille de route et j'aligne la technologie sur les objectifs métier.",
+        pt: 'Formo e lidero equipes, defino o roadmap e conecto a tecnologia aos objetivos do negócio.',
+      },
+    },
+  ],
 
-  skills: [
+  ventures: [
     {
-      title: { es: 'IA y aprendizaje automático', en: 'AI & Machine Learning' },
-      items: ['TensorFlow', 'PyTorch', 'LangChain', 'LLMs', 'Computer Vision', 'NLP', 'RAG'],
+      name: 'Kardot',
+      role: { es: 'Lead Architect · desde 2025', en: 'Lead Architect · since 2025', fr: 'Lead Architect · depuis 2025', pt: 'Lead Architect · desde 2025' },
+      description: {
+        es: 'Ecosistema fintech B2B multiagente para la interoperabilidad entre empresas.',
+        en: 'A multi-agent B2B fintech ecosystem for interoperability between companies.',
+        fr: 'Un écosystème fintech B2B multi-agents pour l’interopérabilité entre entreprises.',
+        pt: 'Ecossistema fintech B2B multiagente para a interoperabilidade entre empresas.',
+      },
+      result: {
+        es: '10+ alianzas clave y 30 % menos costos de desarrollo.',
+        en: '10+ key partnerships and 30% lower development costs.',
+        fr: '10+ partenariats clés et 30 % de coûts de développement en moins.',
+        pt: '10+ parcerias-chave e 30% menos custos de desenvolvimento.',
+      },
+      url: '',
     },
     {
-      title: { es: 'Sistemas multiagente', en: 'Multi-Agent Systems' },
-      items: ['MAS', 'MCP', 'Agentic Workflows', 'LLM Orchestration'],
+      name: 'Estrategia.IA',
+      role: { es: 'Líder técnico · 2025', en: 'Technical lead · 2025', fr: 'Responsable technique · 2025', pt: 'Líder técnico · 2025' },
+      description: {
+        es: 'Motor de IA para la planificación estratégica automatizada de negocios.',
+        en: 'An AI engine for automated strategic business planning.',
+        fr: 'Un moteur d’IA pour la planification stratégique automatisée des entreprises.',
+        pt: 'Motor de IA para o planejamento estratégico automatizado de negócios.',
+      },
+      result: {
+        es: '60 % menos tiempo de planificación y 25 % de crecimiento mensual.',
+        en: '60% shorter planning cycles and 25% month-over-month growth.',
+        fr: '60 % de temps de planification en moins et 25 % de croissance mensuelle.',
+        pt: '60% menos tempo de planejamento e 25% de crescimento mensal.',
+      },
+      url: '',
     },
     {
-      title: { es: 'Full stack', en: 'Full Stack' },
-      items: ['Python', 'Node.js', 'Go', 'TypeScript', 'React', 'Vue', 'GraphQL'],
-    },
-    {
-      title: { es: 'Nube y datos', en: 'Cloud & Data' },
-      items: ['AWS', 'GCP', 'Azure', 'Docker', 'Kubernetes', 'Terraform', 'PostgreSQL'],
+      name: 'PlotVision',
+      role: { es: 'Investigación y producto', en: 'Research & product', fr: 'Recherche et produit', pt: 'Pesquisa e produto' },
+      description: {
+        es: 'Plataforma de visión por computadora para big data e investigación agrícola.',
+        en: 'A computer vision platform for big data and agricultural research.',
+        fr: 'Une plateforme de vision par ordinateur pour le big data et la recherche agricole.',
+        pt: 'Plataforma de visão computacional para big data e pesquisa agrícola.',
+      },
+      result: {
+        es: 'Más de 50 TB de datos visuales procesados.',
+        en: '50TB+ of visual data processed.',
+        fr: 'Plus de 50 To de données visuelles traitées.',
+        pt: 'Mais de 50 TB de dados visuais processados.',
+      },
+      url: '',
     },
   ],
 
   experience: [
     {
       company: 'Kardot',
-      role: { es: 'Arquitecto principal', en: 'Lead Architect' },
-      period: { es: 'jun 2025 – actualidad', en: 'Jun 2025 – Present' },
-      highlights: {
-        es: [
-          'Núcleo de IA de la plataforma para 10.000 transacciones concurrentes con 99,99 % de disponibilidad.',
-          'Sistemas multiagente (MAS) con Model Context Protocol (MCP) para conectar herramientas B2B seguras.',
-          'Dirección de un equipo multidisciplinario de 5 personas: 40 % menos tiempo de MVP a mercado.',
-          'Marcos B2B que aseguraron más de 10 alianzas clave y redujeron un 30 % los costos de desarrollo.',
-        ],
-        en: [
-          "Engineered the platform's AI core to support 10,000 concurrent transactions with 99.99% uptime.",
-          'Pioneered Multi-Agent Systems (MAS) using the Model Context Protocol (MCP) to connect secure B2B tools.',
-          'Directed a cross-functional team of 5, accelerating the MVP-to-market lifecycle by 40%.',
-          'Formulated B2B frameworks securing 10+ key partnerships and reducing development costs by 30%.',
-        ],
+      role: { es: 'Lead Architect', en: 'Lead Architect', fr: 'Lead Architect', pt: 'Lead Architect' },
+      period: '2025 –',
+      highlight: {
+        es: 'Plataforma B2B para 10.000 transacciones concurrentes con 99,99 % de disponibilidad.',
+        en: 'B2B platform handling 10,000 concurrent transactions at 99.99% uptime.',
+        fr: 'Plateforme B2B gérant 10 000 transactions simultanées avec 99,99 % de disponibilité.',
+        pt: 'Plataforma B2B com 10.000 transações simultâneas e 99,99% de disponibilidade.',
       },
     },
     {
       company: 'Estrategia.IA',
-      role: { es: 'Desarrollador full stack principal y arquitecto de IA', en: 'Lead Full Stack Developer & AI Architect' },
-      period: { es: 'ene 2025 – jun 2025', en: 'Jan 2025 – Jun 2025' },
-      highlights: {
-        es: [
-          'Motor de seguimiento de KPI con IA que redujo un 60 % los ciclos de planificación de los clientes.',
-          'Hoja de ruta del producto con un 25 % de crecimiento mensual en la interacción B2B.',
-          'Integraciones full stack web y móvil sin caídas críticas durante el lanzamiento.',
-        ],
-        en: [
-          'Orchestrated an AI-driven KPI tracking engine, reducing client planning cycles by 60%.',
-          'Conceptualized the product roadmap, driving 25% month-over-month growth in B2B engagement.',
-          'Supervised full-stack integrations across web and mobile with zero critical downtime at launch.',
-        ],
+      role: { es: 'Líder full stack y arquitecto de IA', en: 'Lead Full Stack Developer & AI Architect', fr: 'Lead développeur full stack et architecte IA', pt: 'Líder full stack e arquiteto de IA' },
+      period: '2025',
+      highlight: {
+        es: 'Hoja de ruta de producto con 25 % de crecimiento mensual en clientes B2B.',
+        en: 'Product roadmap driving 25% month-over-month B2B growth.',
+        fr: 'Feuille de route produit générant 25 % de croissance B2B mensuelle.',
+        pt: 'Roadmap de produto com 25% de crescimento B2B mensal.',
       },
     },
     {
       company: 'GoPlay!',
-      role: { es: 'Ingeniero de software sénior', en: 'Senior Software Engineer' },
-      period: { es: 'ene 2024 – ene 2025', en: 'Jan 2024 – Jan 2025' },
-      highlights: {
-        es: [
-          'Marketplace sobre AWS y Node.js escalado a 1.000 jugadores activos.',
-          'Apps iOS/Android que procesan más de 10.000 USD mensuales en reservas.',
-        ],
-        en: [
-          'Architected a marketplace using AWS and Node.js, scaling to 1,000 active players.',
-          'Spearheaded iOS/Android apps processing $10k+ monthly booking volume.',
-        ],
+      role: { es: 'Ingeniero de software sénior', en: 'Senior Software Engineer', fr: 'Ingénieur logiciel senior', pt: 'Engenheiro de software sênior' },
+      period: '2024 – 2025',
+      highlight: {
+        es: 'Marketplace con 1.000 jugadores activos y más de 10.000 USD mensuales en reservas.',
+        en: 'Marketplace with 1,000 active players and $10k+ in monthly bookings.',
+        fr: 'Place de marché avec 1 000 joueurs actifs et plus de 10 000 $ de réservations par mois.',
+        pt: 'Marketplace com 1.000 jogadores ativos e mais de US$ 10 mil mensais em reservas.',
       },
     },
     {
       company: 'University of Saskatchewan',
-      role: { es: 'Líder de desarrollo de software', en: 'Software Development Leader' },
-      period: { es: 'ago 2022 – dic 2023', en: 'Aug 2022 – Dec 2023' },
-      highlights: {
-        es: [
-          'Modelos de IA para asignar recursos médicos, con un 25 % más de precisión en las citas.',
-          'App multiplataforma de ultrasonido para más de 500 exámenes anuales en zonas remotas.',
-        ],
-        en: [
-          'Developed AI models for medical resource allocation, improving appointment accuracy by 25%.',
-          'Built a cross-platform ultrasound app supporting 500+ annual exams in remote regions.',
-        ],
+      role: { es: 'Líder de desarrollo de software', en: 'Software Development Leader', fr: 'Responsable du développement logiciel', pt: 'Líder de desenvolvimento de software' },
+      period: '2022 – 2023',
+      highlight: {
+        es: 'IA para asignar recursos médicos: 25 % más de precisión en las citas.',
+        en: 'AI for medical resource allocation: 25% more accurate appointments.',
+        fr: 'IA d’allocation des ressources médicales : 25 % de précision en plus sur les rendez-vous.',
+        pt: 'IA para alocar recursos médicos: 25% mais precisão nas consultas.',
       },
     },
     {
       company: 'Saskatchewan Polytechnic',
-      role: { es: 'Docente de IA y Cloud Computing', en: 'Faculty – AI & Cloud Computing' },
-      period: { es: 'feb 2021 – ago 2022', en: 'Feb 2021 – Aug 2022' },
-      highlights: {
-        es: [
-          'Docencia en Cloud Computing e IA con un 80 % de proyectos exitosos.',
-          '25 estudiantes guiados hasta certificaciones profesionales de AWS.',
-        ],
-        en: [
-          'Taught Cloud Computing and AI, achieving an 80% project success rate.',
-          'Guided 25 students to professional AWS certifications.',
-        ],
+      role: { es: 'Docente de IA y Cloud Computing', en: 'Faculty, AI & Cloud Computing', fr: 'Enseignant en IA et cloud computing', pt: 'Professor de IA e Cloud Computing' },
+      period: '2021 – 2022',
+      highlight: {
+        es: '80 % de proyectos exitosos y 25 estudiantes certificados en AWS.',
+        en: '80% project success rate and 25 AWS-certified students.',
+        fr: '80 % de projets réussis et 25 étudiants certifiés AWS.',
+        pt: '80% de projetos bem-sucedidos e 25 alunos certificados em AWS.',
       },
     },
     {
       company: 'Freelance',
-      role: { es: 'Desarrollador de soluciones de IA', en: 'AI Solutions Developer' },
-      period: { es: 'dic 2019 – ene 2021', en: 'Dec 2019 – Jan 2021' },
-      highlights: {
-        es: [
-          'Soluciones full stack para pymes que aumentaron un 30 % los ingresos de restaurantes.',
-          'Automatización con IA a medida para 5 empresas.',
-        ],
-        en: [
-          'Delivered full-stack solutions for SMEs, increasing restaurant revenue by 30%.',
-          'Translated business goals into custom AI automation for 5 companies.',
-        ],
+      role: { es: 'Soluciones de IA para empresas', en: 'AI Solutions Developer', fr: 'Solutions d’IA pour entreprises', pt: 'Soluções de IA para empresas' },
+      period: '2019 – 2021',
+      highlight: {
+        es: 'Automatización con IA para 5 empresas y 30 % más ingresos para restaurantes.',
+        en: 'AI automation for 5 companies and 30% more revenue for restaurants.',
+        fr: 'Automatisation par IA pour 5 entreprises et 30 % de revenus en plus pour des restaurants.',
+        pt: 'Automação com IA para 5 empresas e 30% mais receita para restaurantes.',
       },
     },
     {
       company: 'University of Saskatchewan',
-      role: { es: 'Investigador asociado y líder', en: 'Research Associate & Lead' },
-      period: { es: 'sep 2017 – sep 2019', en: 'Sep 2017 – Sep 2019' },
-      highlights: {
-        es: [
-          'Plataforma híbrida Python/Go que hizo un 40 % más eficiente el procesamiento de imágenes de drones.',
-          'Plataforma de fenotipado de plantas que procesa más de 50 TB de datos visuales.',
-        ],
-        en: [
-          'Improved drone-image processing efficiency by 40% with a hybrid Python/Go platform.',
-          'Produced a plant phenotyping platform processing 50TB+ of visual data.',
-        ],
+      role: { es: 'Investigador asociado y líder', en: 'Research Associate & Lead', fr: 'Chercheur associé et responsable', pt: 'Pesquisador associado e líder' },
+      period: '2017 – 2019',
+      highlight: {
+        es: 'Fenotipado de plantas con más de 50 TB de datos y 40 % más eficiencia.',
+        en: 'Plant phenotyping over 50TB+ of data with 40% higher efficiency.',
+        fr: 'Phénotypage végétal sur plus de 50 To de données, 40 % plus efficace.',
+        pt: 'Fenotipagem de plantas com mais de 50 TB de dados e 40% mais eficiência.',
       },
     },
     {
       company: 'Ag Exchange Group',
-      role: { es: 'Desarrollador de software y científico de datos', en: 'Software Developer & Data Scientist' },
-      period: { es: 'ene 2017 – dic 2017', en: 'Jan 2017 – Dec 2017' },
-      highlights: {
-        es: [
-          'Modelos de IA para clasificar granos, con un 20 % más de precisión en la calidad para seguros.',
-        ],
-        en: [
-          'Deployed grain classification AI models, raising insurance quality accuracy by 20%.',
-        ],
+      role: { es: 'Desarrollador y científico de datos', en: 'Software Developer & Data Scientist', fr: 'Développeur et data scientist', pt: 'Desenvolvedor e cientista de dados' },
+      period: '2017',
+      highlight: {
+        es: 'Clasificación de granos con IA: 20 % más precisión para aseguradoras.',
+        en: 'AI grain classification: 20% higher accuracy for insurers.',
+        fr: 'Classification des grains par IA : 20 % de précision en plus pour les assureurs.',
+        pt: 'Classificação de grãos com IA: 20% mais precisão para seguradoras.',
       },
     },
   ],
 
-  // TODO: añadir enlaces cuando existan páginas públicas de cada proyecto.
-  projects: [
+  education: [
     {
-      name: 'Kardot',
-      description: {
-        es: 'Ecosistema fintech B2B multiagente de alto rendimiento para la interoperabilidad.',
-        en: 'A high-performance multi-agent B2B fintech ecosystem for interoperability.',
-      },
-      url: '',
+      title: { es: 'Máster en Ciencias de la Computación (IA)', en: 'Master in Computer Science (AI)', fr: 'Master en informatique (IA)', pt: 'Mestrado em Ciência da Computação (IA)' },
+      school: 'Universidad Espíritu Santo (UEES), Ecuador',
     },
     {
-      name: 'PlotVision',
-      description: {
-        es: 'Plataforma de visión por computadora de alto rendimiento para big data e investigación agrícola.',
-        en: 'High-performance computer vision platform for big data and agricultural research.',
-      },
-      url: '',
+      title: { es: 'Diplomado en Ciberseguridad', en: 'Diploma in Cybersecurity', fr: 'Diplôme en cybersécurité', pt: 'Diploma em Cibersegurança' },
+      school: 'Tecnológico de Monterrey, México',
     },
     {
-      name: 'Estrategia.IA',
-      description: {
-        es: 'Motor estratégico con IA para la planificación automatizada de negocios.',
-        en: 'Strategic AI-powered engine for automated business planning.',
-      },
-      url: '',
+      title: { es: 'Licenciatura en Ciencias de la Computación', en: 'Bachelor of Computer Science', fr: 'Licence en informatique', pt: 'Bacharelado em Ciência da Computação' },
+      school: 'Universidad de las Fuerzas Armadas, Ecuador',
+    },
+    {
+      title: { es: 'AWS Certified Solutions Architect – Associate', en: 'AWS Certified Solutions Architect – Associate', fr: 'AWS Certified Solutions Architect – Associate', pt: 'AWS Certified Solutions Architect – Associate' },
+      school: 'Amazon Web Services, 2022',
     },
   ],
 
-  contact: {
-    email: 'lukaswarce@gmail.com' as Value,
-    phone: pending(
-      'Teléfono (y si publicarlo)',
-      '786.671.4280 (README, último cambio)',
-      '708.671.4280 (currículum y sitios anteriores)',
-      'No publicar teléfono',
-    ) as Value,
-    links: [
-      { label: 'LinkedIn', url: 'https://linkedin.com/in/lukaswarce' },
-      { label: 'GitHub', url: 'https://github.com/lukaswarce' },
-      { label: 'Blog', url: 'https://lukaswarce.substack.com/' },
-      { label: 'Instagram', url: 'https://instagram.com/lukaswarce' },
-    ],
-  },
-
-  photo: '/images/christian-spana.jpeg',
+  links: [
+    { label: 'LinkedIn', url: 'https://linkedin.com/in/lukaswarce' },
+    { label: 'GitHub', url: 'https://github.com/lukaswarce' },
+    { label: 'Substack', url: 'https://lukaswarce.substack.com/' },
+    { label: 'Instagram', url: 'https://instagram.com/lukaswarce' },
+  ],
 };
-
-/** Recorre el perfil y devuelve cada dato pendiente con su ruta. */
-export function listPending(node: unknown = profile, path = 'profile'): { path: string; value: Pending }[] {
-  if (isPending(node)) return [{ path, value: node }];
-  if (Array.isArray(node)) return node.flatMap((v, i) => listPending(v, `${path}[${i}]`));
-  if (typeof node === 'object' && node !== null) {
-    return Object.entries(node).flatMap(([k, v]) => listPending(v, `${path}.${k}`));
-  }
-  return [];
-}
