@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://lukaswarce.com/
+Sitemap: https://lukaswarce.com/sitemap.xml
