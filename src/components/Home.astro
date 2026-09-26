@@ -1,0 +1,98 @@
+---
+import Val from './Val.astro';
+import { profile, type Lang } from '../data/profile';
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const { contact } = profile;
+---
+<section id="home" class="hero container">
+  <div>
+    <p class="eyebrow">{t('hero.greeting')}</p>
+    <h1>{profile.name}</h1>
+    <p class="headline"><Val value={profile.headline[lang]} lang={lang} /></p>
+    <p class="lede">{profile.summary[lang]}</p>
+    <ul class="tags">
+      {profile.roles[lang].map((r) => <li>{r}</li>)}
+    </ul>
+    <p class="meta">
+      <strong><Val value={profile.yearsExperience} lang={lang} /></strong> {t('hero.years')} · {profile.location[lang]}
+    </p>
+    <a class="button" href="#contact">{t('hero.cta')}</a>
+  </div>
+  <img class="photo" src={profile.photo} alt={profile.name} width="240" height="240" />
+</section>
+
+<section id="about" class="container">
+  <h2>{t('nav.about')}</h2>
+  <div class="prose">
+    {profile.about[lang].map((p) => <p>{p}</p>)}
+  </div>
+  <div class="grid two">
+    <div>
+      <h3>{t('about.credentials')}</h3>
+      <ul class="list">
+        {profile.credentials[lang].map((c) => <li><Val value={c} lang={lang} /></li>)}
+      </ul>
+    </div>
+    <div>
+      <h3>{t('about.skills')}</h3>
+      {profile.skills.map((s) => (
+        <div class="skill">
+          <h4>{s.title[lang]}</h4>
+          <p>{s.items.join(' · ')}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="container">
+  <h2>{t('nav.experience')}</h2>
+  <div class="grid three">
+    {profile.experience.map((e) => (
+      <article class="card">
+        <h3>{e.role[lang]}</h3>
+        <p>{e.summary[lang]}</p>
+        <ul class="list">
+          {e.highlights[lang].map((h) => <li>{h}</li>)}
+        </ul>
+      </article>
+    ))}
+  </div>
+</section>
+
+<section id="projects" class="container">
+  <h2>{t('nav.projects')}</h2>
+  <div class="grid three">
+    {profile.projects.map((p) => (
+      <article class="card">
+        <h3>{p.url ? <a href={p.url}>{p.name}</a> : p.name}</h3>
+        <p>{p.description[lang]}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<section id="contact" class="container">
+  <h2>{t('nav.contact')}</h2>
+  <p class="lede">{t('contact.intro')}</p>
+  <dl class="contact">
+    <dt>{t('contact.email')}</dt>
+    <dd>
+      {typeof contact.email === 'string'
+        ? <a href={`mailto:${contact.email}`}>{contact.email}</a>
+        : <Val value={contact.email} lang={lang} />}
+    </dd>
+    <dt>{t('contact.phone')}</dt>
+    <dd><Val value={contact.phone} lang={lang} /></dd>
+  </dl>
+  <ul class="links">
+    {contact.links.map((l) => <li><a href={l.url} rel="me noopener">{l.label}</a></li>)}
+  </ul>
+</section>

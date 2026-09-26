@@ -1,0 +1,54 @@
+---
+import '../styles/global.css';
+import { profile, type Lang } from '../data/profile';
+import { homePath, useTranslations } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  title: string;
+}
+
+const { lang, title } = Astro.props;
+const t = useTranslations(lang);
+const other: Lang = lang === 'es' ? 'en' : 'es';
+const sections = ['home', 'about', 'experience', 'projects', 'contact'] as const;
+const canonical = new URL(homePath[lang], Astro.site);
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={t('meta.description')} />
+    <meta name="author" content={profile.name} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="es" href={new URL(homePath.es, Astro.site)} />
+    <link rel="alternate" hreflang="en" href={new URL(homePath.en, Astro.site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL(homePath.es, Astro.site)} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={t('meta.description')} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_US'} />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="container nav" aria-label={lang === 'es' ? 'Principal' : 'Main'}>
+        <a class="brand" href={homePath[lang]}>{profile.name}</a>
+        <ul>
+          {sections.map((s) => <li><a href={`#${s}`}>{t(`nav.${s}`)}</a></li>)}
+        </ul>
+        <a class="lang" href={homePath[other]} hreflang={other} lang={other}>{t('lang.switch')}</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer container">
+      <p>&copy; {new Date().getFullYear()} {profile.name}. {t('footer.rights')}</p>
+    </footer>
+  </body>
+</html>

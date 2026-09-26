@@ -1,0 +1,16 @@
+---
+// Muestra un valor del perfil, o un marcador visible si está pendiente de confirmar.
+import { isPending, type Lang, type Value } from '../data/profile';
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+  value: Value;
+  lang: Lang;
+}
+
+const { value, lang } = Astro.props;
+const t = useTranslations(lang);
+---
+{isPending(value)
+  ? <mark class="pending" title={`${value.note}: ${value.options.join(' | ')}`}>[{t('pending')}]</mark>
+  : value}

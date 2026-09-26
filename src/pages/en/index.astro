@@ -1,0 +1,8 @@
+---
+import Base from '../../layouts/Base.astro';
+import Home from '../../components/Home.astro';
+import { profile } from '../../data/profile';
+---
+<Base lang="en" title={`${profile.name} | Home`}>
+  <Home lang="en" />
+</Base>
