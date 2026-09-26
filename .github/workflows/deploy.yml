@@ -2,10 +2,10 @@ name: Sitio Astro
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
   # El despliegue es manual hasta aprobar el reemplazo del sitio actual.
-  # Para desplegar en cada push a main, quita la condición `if` del job `deploy`.
+  # Para desplegar en cada push a master, quita la condición `if` del job `deploy`.
   workflow_dispatch:
 
 permissions:
@@ -33,7 +33,7 @@ jobs:
           path: dist
 
   deploy:
-    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master'
     needs: build
     runs-on: ubuntu-latest
     permissions:
